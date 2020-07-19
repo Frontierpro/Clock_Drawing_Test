@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset='utf-8' />
+    <title>Clock&nbsp;Drawing&nbsp;Test</title>
+    {% load static %}
+    <link rel='icon' type='image/x-icon' href="{% static 'img/index.png' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sketch.css' %}" />
+    <script type="text/javascript" src="{% static 'js/sketch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+
+</head>
+
+<body id="bd" style="margin:0; overflow:-Scroll; overflow-y:hidden; overflow-x:hidden;">
+
+    <canvas id="Draw_Canvas" style="background-color:#e0e0e0">
+        <script>
+            var canvas = document.getElementById("Draw_Canvas");
+            canvas_pen = canvas.getContext("2d");
+            canvas.width = document.documentElement.clientWidth;
+            canvas.height = document.documentElement.clientHeight;
+            canvas_pen.fillStyle = "#4c4c4c";
+
+            var paint = false, eraser = false, event = true;
+
+            canvas.onmousedown = function(e) {
+                if (event) {
+                    Fill_Circle(canvas_pen, e.clientX, e.clientY, 6, 0, 2 * Math.PI);
+                    paint = true;
+                }
+                else {
+                    canvas_pen.clearRect(e.clientX, e.clientY, 10, 10);
+                    eraser = true;
+                }
+            }
+
+            canvas.onmousemove = function(e) {
+                if (!event && eraser)
+                    canvas_pen.clearRect(e.clientX, e.clientY, 100, 100);
+                if (event && paint)
+                    Fill_Circle(canvas_pen, e.clientX, e.clientY, 6, 0, 2 * Math.PI);
+            }
+
+            canvas.onmouseup = function(e) {
+                paint = false;
+                eraser = false;
+            }
+        </script>
+    </canvas>
+
+    <div id="tool">
+        {% csrf_token %}
+        <table width="100%">
+            <tr height="5px"></tr>
+            <tr height="30px">
+                <td width="10%"></td>
+                <td width="20%" style="text-align:center;">
+                    <img id="pen" src="{% static 'img/pen_select.png' %}" width="30px" height="30px" 
+                    onclick=Func_Switch(0) />
+                </td>
+                <td width="20%" style="text-align:center;">
+                    <img id="eraser" src="{% static 'img/eraser.png' %}" width="30px" height="30px" 
+                    onclick=Func_Switch(1) />
+                </td>
+                <td width="20%" style="text-align:center;">
+                    <img id="bin" src="{% static 'img/bin.png' %}" width="30px" height="30px" 
+                    onclick=Func_Switch(2) onmousedown=Bin_Change(1) onmouseup=Bin_Change(0) />
+                </td>
+                <td width="20%" style="text-align:center;">
+                    <img id="next" src="{% static 'img/next.png' %}" width="30px" height="30px" 
+                    onclick=Func_Switch(3) onmousedown=Next_Change(1) onmouseup=Next_Change(0) />
+                </td>
+                <td width="10%"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="cmd">
+        <span id="inst" style="color:#2d85f0; margin-top:15px; margin-left:20px; float:left;">
+            Draw a closed circle.
+        </span>
+    </div>
+
+</body>
