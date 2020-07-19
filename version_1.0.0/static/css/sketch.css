@@ -1,0 +1,23 @@
+#tool { 
+    background-color: #ffffff; 
+    border-radius: 25px; 
+    height: 50px; 
+    width: 30%;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+    position: absolute;
+    top: 500px;
+    left: 35%;
+}
+
+#cmd {
+    background-color: #4c4c4c; 
+    border-radius: 25px; 
+    height: 50px; 
+    width: 21%;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+    position: absolute;
+    top: 100px;
+    left: 0;
+    font-family: Arial;
+    font-size: 20px;
+}
