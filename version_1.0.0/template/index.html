@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset='utf-8' />
+    <title>Clock&nbsp;Drawing&nbsp;Test</title>
+    {% load static %}
+    <link rel='icon' type='image/x-icon' href="{% static 'img/index.png' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+
+</head>
+
+<body style="margin:0;">
+
+    <div id="head">
+        <img src="{% static 'img/symbol.png' %}" style="height:24px; width:24px; float:left;" />
+
+        <span style="font-size:24px; color:#4c4c4c; float:left;">
+            &nbsp;Clock Drawing Test
+        </span>
+        
+        <span id="head_intro" onmouseover="Intro_Over(true)" onmouseout="Intro_Over(false)">
+            <a id="intro_url" href="#intro" style="text-decoration:none; color:#4c4c4c;">intro</a>
+        </span>
+
+        <span id="head_step" onmouseover="Step_Over(true)" onmouseout="Step_Over(false)">
+            <a id="step_url" href="#step" style="text-decoration:none; color:#4c4c4c;">step</a>
+        </span>
+
+        <span id="head_rule" onmouseover="Rule_Over(true)" onmouseout="Rule_Over(false)">
+            <a id="rule_url" href="#rule" style="text-decoration:none; color:#4c4c4c;">rule</a>
+        </span>
+
+        <span id="head_try" onmouseover="Try_Over(true)" onmouseout="Try_Over(false)">
+            <a id="try_url" href="#try" style="text-decoration:none; color:#4c4c4c;">try</a>
+        </span>
+    </div>
+
+    <div id="content">
+        <canvas id="content_canvas" height="600" width="750" style="float:left">
+            <script>
+                var content_pen = document.getElementById("content_canvas").getContext("2d");
+                content_pen.strokeWidth = 6;
+                content_pen.lineWidth = 6;
+
+                content_pen.strokeStyle = '#2d85f0';
+                Draw_Line(content_pen, 0, 135, 90, 135);
+                Draw_Circle(content_pen, 103, 135, 13, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 125, 135, 305, 135);
+                Draw_Circle(content_pen, 314, 135, 9, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 330, 135, 420, 135);
+                Draw_Circle(content_pen, 426, 135, 6, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 440, 135, 640, 135);
+                Draw_Circle(content_pen, 649, 135, 9, 0, 2 * Math.PI);
+
+                content_pen.strokeStyle = '#f4433c';
+                Draw_Line(content_pen, 0, 180, 10, 180);
+                Draw_Circle(content_pen, 16, 180, 6, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 30, 180, 130, 180);
+                Draw_Circle(content_pen, 139, 180, 9, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 155, 180, 265, 180);
+                Draw_Circle(content_pen, 273, 180, 8, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 285, 170, 305, 150);
+
+                content_pen.strokeStyle = '#9e9e9e';
+                Draw_Line(content_pen, 120, 120, 145, 95);
+                Draw_Circle(content_pen, 150, 90, 6, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 165, 90, 270, 90);
+                Draw_Circle(content_pen, 275, 90, 6, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 285, 100, 305, 120);
+
+                Draw_Line(content_pen, 440, 125, 565, 0);
+                Draw_Circle(content_pen, 573, -8, 9, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 585, 5, 615, 35);
+                Draw_Circle(content_pen, 620, 40, 8, 0, 2 * Math.PI);
+
+                Draw_Line(content_pen, 0, 240, 80, 240);
+                Draw_Circle(content_pen, 86, 240, 6, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 100, 240, 180, 240);
+                Draw_Circle(content_pen, 188, 240, 8, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 185, 245, 110, 320);
+
+                Draw_Line(content_pen, 110, 340, 135, 365);
+                Draw_Circle(content_pen, 140, 370, 8, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 155, 370, 214, 370);
+                Draw_Circle(content_pen, 227, 370, 13, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 244, 358, 262, 340);
+
+                Draw_Line(content_pen, 315, 460, 350, 495);
+                Draw_Circle(content_pen, 358, 500, 10, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 375, 500, 450, 500);
+                Draw_Circle(content_pen, 457, 500, 7, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 468, 490, 493, 465);
+
+                content_pen.strokeStyle = '#ffbc32';
+                Draw_Line(content_pen, 0, 330, 90, 330);
+                Draw_Circle(content_pen, 98, 330, 8, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 115, 330, 265, 330);
+                Draw_Circle(content_pen, 271, 330, 6, 0, 2 * Math.PI);
+
+                content_pen.strokeStyle = '#0aa858';
+                Draw_Line(content_pen, 240, 385, 300, 445);
+                Draw_Circle(content_pen, 305, 450, 8, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 322, 450, 495, 450);
+                Draw_Circle(content_pen, 508, 450, 13, 0, 2 * Math.PI);
+                Draw_Line(content_pen, 467, 510, 560, 603);
+            </script>
+        </canvas>
+
+        <div style="float:left; width:400px; height:600px;">
+            <table cellpadding="0" cellspacing="0" style="color:#ffffff;">
+                <tr><td style="width:400px; height:220px;"></td></tr>
+
+                <tr>
+                    <td style="font-size:40px; text-align:right;">
+                        <strong>Clock Drawing Test</strong>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="height:100px; font-size:20px; text-align:right;">
+                        Tell you whether you are suffering from senile dementia.
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="block">
+        <canvas id="block_canvas" width=900px height=100px>
+            <script>
+                var block_pen = document.getElementById("block_canvas").getContext("2d");
+                block_pen.strokeWidth = 6;
+                block_pen.lineWidth = 6;
+
+                block_pen.strokeStyle = '#0aa858';
+                Draw_Line(block_pen, 555, -2, 600, 43);
+                Draw_Circle(block_pen, 605, 50, 8, 0, 2 * Math.PI);
+                Draw_Line(block_pen, 620, 50, 700, 50);
+                Draw_Circle(block_pen, 706, 50, 6, 0, 2 * Math.PI);
+                Draw_Line(block_pen, 720, 50, 760, 50);
+                Draw_Circle(block_pen, 770, 50, 10, 0, 2 * Math.PI);
+            </script>
+        </canvas>
+    </div>
+
+    <div id="intro">
+        <table width=100% height=100% cellpadding="0" cellspacing="0">
+            <tr height=50px></tr>
+
+            <tr>
+                <td style="width:10%; height:0;"></td>
+                <td style="width:80%; height:40px; font-size:40px; text-align:center;" colspan=3>
+                    <strong>Introduction to Clock Drawing Test</strong>
+                </td>
+                <td style="width:10%; height:0;"></td>
+            </tr>
+
+            <tr>
+                <td style="width:10%; height:0;"></td><td style="width:10%; height:0;"></td>
+                <td style="width:60%; height:360px; font-size:18px; text-align:justify">
+                    <p>&emsp;&emsp;An ideal neuropsychological screening tool should be 
+                    able to reflect cognitive functions more comprehensively, but also 
+                    be simple, accurate, and culturally relevant. The clock drawing test 
+                    basically meets the above conditions, so it can be used as an early 
+                    screening tool for examining senile dementia.</p>
+                    <p>&emsp;&emsp;Freehand drawing of timepieces is a complex behavioral 
+                    activity. In addition to spatial construction techniques, many knowledge 
+                    functions are required to participate, involving memory, attention, 
+                    abstract thinking, design, layout, use, numbers, calculations, time 
+                    and space orientation concepts, and operation. A variety of cognitive 
+                    functions such as order. The operation is simpler, less time-consuming, 
+                    and more acceptable to patients.</p>
+                    <p>&emsp;&emsp;There are several scoring methods for CDT, and this product 
+                    uses a 4-point rating method. Four points are considered that cognitive 
+                    function is normal, zero to three points are considered as mild, moderate 
+                    and severe cognitive dysfunction.</p>
+                </td>
+                <td style="width:10%; height:0;"></td><td style="width:10%; height:0;"></td>
+            </tr>
+
+            <tr height=50px></tr>
+        </table>
+    </div>
+
+    <div id="step">
+        <canvas height=160px width=1200px id="step_canvas" style="float:left;">
+            <script>
+                var step_pen = document.getElementById("step_canvas").getContext("2d");
+                step_pen.strokeWidth = 4;
+                step_pen.lineWidth = 4;
+
+                step_pen.strokeStyle = '#ffffff';
+                Draw_Line(step_pen, 200, -2, 260, 120);
+                Draw_Line(step_pen, 280, 130, 550, 50);
+                Draw_Circle(step_pen, 559, 47, 10, 0, 2 * Math.PI);
+                Draw_Line(step_pen, 563, 55, 593, 115);
+                Draw_Circle(step_pen, 596, 121, 8, 0, 2 * Math.PI);
+                Draw_Line(step_pen, 602, 118, 902, -32);
+                Draw_Line(step_pen, 902, -32, 952, 68);
+                Draw_Line(step_pen, 942, 80, 522, -50);
+                Draw_Line(step_pen, 522, -50, 0, 90);
+
+                step_pen.strokeStyle = '#ffb74d';
+                Draw_Circle(step_pen, 268, 133, 13, 0, 2 * Math.PI);
+                Draw_Circle(step_pen, 962, 85, 20, 0, 2 * Math.PI);
+            </script>
+        </canvas>
+
+        <table cellpadding="0" cellspacing="0" width=100%>
+            <tr height=75px>
+                <td width=14% colspan=2></td>
+                <td width=6%><img src="{% static 'img/step_one.png' %}" width=100% height=75px /></td>
+                <td width=16% colspan=2></td>
+                <td width=6%><img src="{% static 'img/step_two.png' %}" width=100% height=75px /></td>
+                <td width=16% colspan=2></td>
+                <td width=6%><img src="{% static 'img/step_three.png' %}" width=100% height=75px/></td>
+                <td width=16% colspan=2></td>
+                <td width=6%><img src="{% static 'img/step_four.png' %}" width=100% height=75px /></td>
+                <td width=14% colspan=2></td>
+            </tr>
+
+            <tr height=100px>
+                <td style="width:6%;"></td>
+                <td style="width:22%;" colspan=3>Follow instructions</td>
+                <td style="width:22%;" colspan=3>Draw each step</td>
+                <td style="width:22%;" colspan=3>Download all parts</td>
+                <td style="width:22%;" colspan=3>Get the final result</td>
+                <td style="width:6%;"></td>
+            </tr>
+
+            <tr height=0>
+                <td style="width:6%;"></td>
+                <td style="width:8%;"></td>
+                <td style="width:6%;"></td>
+                <td style="width:8%;"></td>
+                <td style="width:8%;"></td>
+                <td style="width:6%;"></td>
+                <td style="width:8%;"></td>
+                <td style="width:8%;"></td>
+                <td style="width:6%;"></td>
+                <td style="width:8%;"></td>
+                <td style="width:8%;"></td>
+                <td style="width:6%;"></td>
+                <td style="width:8%;"></td>
+                <td style="width:6%;"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="rule">
+        <table cellpadding="0" cellspacing="0" width=100%>
+            <tr height="50px"></tr>
+            <tr height=100px>
+                <td style="font-size:40px; text-align:center;" colspan=2>
+                    <strong>Four Grading Rules</strong>
+                </td>
+            </tr>
+
+            <tr height=450px>
+                <td width="50%">
+                    <canvas id="rule_one" width=525px height=450px style="float:right;">
+                        <script>
+                            var rule_one_pen = document.getElementById("rule_one").getContext("2d");
+                            Left_Sym(rule_one_pen, "{% static 'img/rule_one.png' %}");
+                            rule_one_pen.strokeWidth = 3;
+                            rule_one_pen.lineWidth = 3;
+                            Draw_Line(rule_one_pen, 367, 367, 525, 450);
+                        </script>
+                    </canvas>
+                </td>
+
+                <td width="50%">
+                    <table cellpadding="0" cellspacing="0" width="80%">
+                        <tr>
+                            <td style="font-size:30px; text-align:left; color:#2d85f0;">
+                                <strong>&emsp;Draw a closed circle</strong>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="height:150px; font-size:15px; text-align:justify;">
+                                <ul style="line-height:40px;">
+                                    <li>There must be one and only one circle</li>
+                                    <li>There can be no gaps on the circle</li>
+                                    <li>The roundness should exceed a certain threshold</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr height=450px>
+                <td width="50%">
+                    <table cellpadding="0" cellspacing="0" width="80%" align="right">
+                        <tr>
+                            <td style="font-size:30px; text-align:left; color:#f4433c;">
+                                <strong>&emsp;Dials at correct position</strong>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="height:150px; font-size:15px; text-align:justify;">
+                                <ul style="line-height:40px;">
+                                    <li>All dials must be inside the clock face</li>
+                                    <li>The dials 12, 3, 6, and 9 must be symmetrical</li>
+                                    <li>The offset of each dial cannot exceed the threshold</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td width="50%">
+                    <canvas id="rule_two" width=525px height=450px style="float:left;">
+                        <script>
+                            var rule_two_pen = document.getElementById("rule_two").getContext("2d");
+                            Right_Sym(rule_two_pen, "{% static 'img/rule_two.png' %}");
+                            rule_two_pen.strokeWidth = 3;
+                            rule_two_pen.lineWidth = 3;
+                            Draw_Line(rule_two_pen, 0, 0, 158, 83);
+                            Draw_Line(rule_two_pen, 0, 450, 158, 367);
+                        </script>
+                    </canvas>
+                </td>
+            </tr>
+
+            <tr height=450px>
+                <td width="50%">
+                    <canvas id="rule_three" width=525px height=450px style="float:right;">
+                        <script>
+                            var rule_three_pen = document.getElementById("rule_three").getContext("2d");
+                            Left_Sym(rule_three_pen, "{% static 'img/rule_three.png' %}");
+                            rule_three_pen.strokeWidth = 3;
+                            rule_three_pen.lineWidth = 3;
+                            Draw_Line(rule_three_pen, 367, 83, 525, 0);
+                            Draw_Line(rule_three_pen, 367, 367, 525, 450);
+                        </script>
+                    </canvas>
+                </td>
+
+                <td width="50%">
+                    <table cellpadding="0" cellspacing="0" width="80%">
+                        <tr>
+                            <td style="font-size:30px; text-align:left; color:#ffbc32;">
+                                <strong>&emsp;No missing of 12 figures</strong>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="height:150px; font-size:15px; text-align:justify;">
+                                <ul style="line-height:40px;">
+                                    <li>There exit and only exit numbers 1 to 12</li>
+                                    <li>The numbers must be written correctly</li>
+                                    <li>The 12 numbers must be in correct arrangement</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <tr height=450px>
+                <td width="50%">
+                    <table cellpadding="0" cellspacing="0" width="80%" align="right">
+                        <tr>
+                            <td style="font-size:30px; text-align:left; color:#0aa858;">
+                                <strong>&emsp;Pointers are correct</strong>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="height:150px; font-size:15px; text-align:justify;">
+                                <ul style="line-height:40px;">
+                                    <li>There must be an hour hand and a minute hand</li>
+                                    <li>Both hands must point to the correct position</li>
+                                    <li>The hour hand must be longer than the minute hand</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+                <td width="50%">
+                    <canvas id="rule_four" width=525px height=450px style="float:left;">
+                        <script>
+                            var rule_four_pen = document.getElementById("rule_four").getContext("2d");
+                            Right_Sym(rule_four_pen, "{% static 'img/rule_four.png' %}");
+                            rule_four_pen.strokeWidth = 3;
+                            rule_four_pen.lineWidth = 3;
+                            Draw_Line(rule_four_pen, 0, 0, 158, 83);
+                        </script>
+                    </canvas>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="try">
+        <span id="symbol"><strong>CASIA</strong></span>
+        <span id="clue" onmouseover="Clue_Over(true)" onmouseout="Clue_Over(false)">
+            <a href="../sketch" id="next">
+                Click here to have a try !
+            </a>
+        </span>
+    </div>
+
+</body>
+
+</html>
